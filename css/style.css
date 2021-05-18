@@ -10,13 +10,38 @@ html, body {
     user-select: none;
 }
 
-.card {
+.grid-rows {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 1em;
+}
+
+.grid-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1em;
+}
+
+.mem-card {
     cursor: pointer;
     position: relative;
+    transition: transform .5s;
+}
+
+.card:active {
+    transition: transform .2s;
 }
 
 .front,
 .back {
     position: absolute;
     backface-visibility: hidden;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.front {
+    transform: rotateY(180deg);
 }
