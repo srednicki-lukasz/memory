@@ -4,9 +4,18 @@ let isBoardLocked = false;
 let isCardRevealed = false;
 let firstPick, secondPick;
 
-// Shuffle cards
+// Shuffle cards | Reveal cards for 3s
 (function() {
-    cards.forEach(card => card.style.order = Math.floor(Math.random() * 12));
+    cards.forEach(card => {
+        card.style.order = Math.floor(Math.random() * 12);
+        card.classList.add('reveal');
+        isBoardLocked = true;
+
+        setTimeout(() => {
+            card.classList.remove('reveal');
+            isBoardLocked = false;
+        }, 3000);
+    });
 }());
 
 // Reveal card
@@ -37,7 +46,7 @@ function checkForPair() {
 // Cover cards
 function coverCards() {
     isBoardLocked = true;
-    
+
     setTimeout(() => {
         firstPick.classList.remove('reveal');
         secondPick.classList.remove('reveal');
